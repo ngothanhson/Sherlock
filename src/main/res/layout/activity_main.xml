@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ngothanhson95.dev.com.sherlock.MainActivity">
+    tools:context=".sherlock.ui.MainActivity">
    <android.support.v7.widget.Toolbar
        android:id="@+id/toolbar"
        app:contentInsetLeft="0dp"

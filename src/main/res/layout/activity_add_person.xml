@@ -8,5 +8,202 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ngothanhson95.dev.com.sherlock.AddPersonActivity">
+    tools:context=".sherlock.ui.AddPersonActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/photo_person"
+        android:id="@+id/layoutPhoto">
+    <android.support.v7.widget.CardView
+        android:layout_width="@dimen/photo_person"
+        android:layout_height="@dimen/photo_person"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/cvPersonPhoto">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/person"
+            android:layout_gravity="center"/>
+    </android.support.v7.widget.CardView>
+    <EditText
+        android:id="@+id/etInputName"
+        android:padding="@dimen/small_padding"
+        android:paddingLeft="@dimen/small_padding"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/action_input_name"
+        android:layout_toRightOf="@id/cvPersonPhoto"/>
+    <ImageView
+        android:id="@+id/imgWarningName"
+        android:layout_width="@dimen/small_icon"
+        android:layout_height="@dimen/small_icon"
+        android:src="@drawable/warning"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutInputAge"
+
+        android:paddingTop="@dimen/small_padding"
+        android:layout_below="@id/layoutPhoto">
+        <TextView
+            android:id="@+id/tvAge"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text"
+            android:text="Age (Required):"/>
+        <EditText
+            android:id="@+id/etInputAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAge"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/normal_text"
+            android:hint="Input Age"/>
+        <ImageView
+            android:id="@+id/imgWarningAge"
+            android:layout_toRightOf="@+id/etInputAge"
+            android:layout_width="@dimen/small_icon"
+            android:layout_height="@dimen/small_icon"
+            android:visibility="invisible"
+            android:src="@drawable/warning"
+            android:layout_below="@id/tvAge"
+            android:layout_alignBottom="@id/etInputAge"/>>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/small_padding"
+        android:id="@+id/layoutInputHeight"
+        android:paddingTop="@dimen/small_padding"
+        android:layout_below="@id/layoutPhoto"
+        android:layout_toRightOf="@id/layoutInputAge">
+        <TextView
+            android:id="@+id/tvHeight"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text"
+            android:text="Height (Required):"/>
+        <EditText
+            android:id="@+id/etInputHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text"
+            android:hint="Input Height (cm)"
+            android:layout_below="@id/tvHeight"
+            android:maxLines="1"/>
+        <ImageView
+            android:id="@+id/imgWarningHeight"
+            android:layout_toRightOf="@+id/etInputHeight"
+            android:layout_width="@dimen/small_icon"
+            android:layout_height="@dimen/small_icon"
+            android:visibility="invisible"
+            android:src="@drawable/warning"
+            android:layout_below="@id/tvHeight"
+            android:layout_alignBottom="@id/etInputHeight"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutInputAge"
+        android:text="Gender (Required):"/>
+    <RadioGroup
+        android:id="@+id/rdgGender"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvGender">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Male"
+        android:checked="true"
+        android:id="@+id/rdMale"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Female"
+        android:id="@+id/rdFemale"/>
+    </RadioGroup>
+    <TextView
+        android:id="@+id/tvHairColour"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/small_padding"
+        android:layout_below="@id/rdgGender"
+        android:text="Hair colour (Optional):"/>
+    <EditText
+        android:id="@+id/etInputHairColour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/normal_text"
+        android:hint="Input Hair Colour"
+        android:maxLines="1"
+        android:layout_below="@id/tvHairColour"/>
+
+    <TextView
+        android:id="@+id/tvAdress"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/small_padding"
+        android:layout_below="@id/etInputHairColour"
+        android:text="Adress (Optional):"/>
+    <EditText
+        android:id="@+id/etInputAdress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/normal_text"
+        android:hint="Input Adress"
+        android:maxLines="1"
+        android:layout_below="@id/tvAdress"/>
+
+    <TextView
+        android:id="@+id/tvAdditionalComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryText"
+        android:paddingTop="@dimen/small_padding"
+        android:layout_below="@id/etInputAdress"
+        android:text="Additional Comment (Optional):"/>
+    <EditText
+        android:id="@+id/etAdditionalComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/normal_text"
+        android:hint="Input Additional Comment"
+        android:maxLines="1"
+        android:layout_below="@id/tvAdditionalComment"/>
+    
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_below="@+id/etAdditionalComment">
+       <Button
+           android:paddingRight="10dp"
+           android:id="@+id/btnSavePerson"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:text="Save"/>
+       <Button
+           android:paddingLeft="10dp"
+           android:id="@+id/btnReturnPerson"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:text="Return"/>
+   </LinearLayout>
 </RelativeLayout>

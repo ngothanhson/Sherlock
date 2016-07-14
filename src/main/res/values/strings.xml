@@ -3,4 +3,5 @@
     <string name="action_search">Input search value</string>
     <string name="action_backup">Backup</string>
     <string name="action_addpeople">Add people</string>
+    <string name="action_input_name">Input name</string>
 </resources>
