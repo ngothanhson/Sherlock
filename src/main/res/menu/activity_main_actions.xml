@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_search"
+          android:title="@string/action_search"
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_cloud"
+          android:icon="@drawable/ic_cloud"
+          android:title="@string/action_backup"
+          app:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/action_personaladd"
+          android:icon="@drawable/ic_personal_add"
+          android:title="@string/action_addpeople"
+          app:showAsAction="ifRoom|withText"/>
+</menu>
