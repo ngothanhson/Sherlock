@@ -1,7 +1,5 @@
 package ngothanhson95.dev.com.sherlock.sherlock.model;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by ngothanhson95 on 7/14/16.
  */
@@ -13,20 +11,18 @@ public class Person {
     private String hairColour;
     private String address;
     private String additionalComment;
-    private Bitmap bmp;
+    private int id;
+    private byte[] image;
 
     public Person() {
     }
 
-    public Person(String additionalComment, String address, String age, Bitmap bmp, String gender, String hairColour, String height, String name) {
-        this.additionalComment = additionalComment;
-        this.address = address;
-        this.age = age;
-        this.bmp = bmp;
-        this.gender = gender;
-        this.hairColour = hairColour;
-        this.height = height;
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAdditionalComment() {
@@ -53,14 +49,6 @@ public class Person {
         this.age = age;
     }
 
-    public Bitmap getBmp() {
-        return bmp;
-    }
-
-    public void setBmp(Bitmap bmp) {
-        this.bmp = bmp;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -85,11 +73,30 @@ public class Person {
         this.height = height;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
+        this.name = name;
+    }
+
+    public Person(String additionalComment, String address, String age, String gender, String hairColour, String height, byte[] image, String name) {
+        this.additionalComment = additionalComment;
+        this.address = address;
+        this.age = age;
+        this.gender = gender;
+        this.hairColour = hairColour;
+        this.height = height;
+        this.image = image;
         this.name = name;
     }
 }

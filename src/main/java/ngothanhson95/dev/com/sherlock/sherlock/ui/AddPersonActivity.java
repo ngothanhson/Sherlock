@@ -16,11 +16,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ngothanhson95.dev.com.sherlock.R;
+import ngothanhson95.dev.com.sherlock.sherlock.database.PersonDbHelper;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 
 
@@ -56,7 +58,7 @@ public class AddPersonActivity extends AppCompatActivity {
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     private static final int PICK_IMAGE_REQUEST = 1035;
     private Person person = new Person();
-
+    private PersonDbHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,8 @@ public class AddPersonActivity extends AppCompatActivity {
                     confirmAlert.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            db = new PersonDbHelper(getApplicationContext());
+                            db.insert(person);
                             Toast.makeText(AddPersonActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -124,6 +128,15 @@ public class AddPersonActivity extends AppCompatActivity {
                 selectPhoto.create().show();
             }
         });
+
+
+        btnReturnPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void onPickGallery() {
@@ -153,7 +166,7 @@ public class AddPersonActivity extends AppCompatActivity {
             }
             return false;
         } else {
-            imgWarningHeight.setVisibility(View.VISIBLE);
+            imgWarningHeight.setVisibility(View.INVISIBLE);
             imgWarningAge.setVisibility(View.INVISIBLE);
             imgWarningName.setVisibility(View.INVISIBLE);
             return true;
@@ -174,7 +187,7 @@ public class AddPersonActivity extends AppCompatActivity {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 imgPersonPhoto.setImageBitmap(imageBitmap);
-                person.setBmp(imageBitmap);
+                person.setImage(bitmapToByte(imageBitmap));
             } else {
                 Toast.makeText(this, "Picture wasn' taken", Toast.LENGTH_SHORT).show();
             }
@@ -186,13 +199,19 @@ public class AddPersonActivity extends AppCompatActivity {
                 try {
                     Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     imgPersonPhoto.setImageBitmap(imageBitmap);
-                    person.setBmp(imageBitmap);
+                    person.setImage(bitmapToByte(imageBitmap));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }
         }
+    }
+
+    private byte[] bitmapToByte(Bitmap bmp){
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        return outputStream.toByteArray();
     }
 
     private void addPerson(){
