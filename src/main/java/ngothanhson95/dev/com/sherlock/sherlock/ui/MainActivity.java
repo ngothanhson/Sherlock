@@ -17,15 +17,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import ngothanhson95.dev.com.sherlock.R;
 import ngothanhson95.dev.com.sherlock.sherlock.adapter.PersonAdapter;
+import ngothanhson95.dev.com.sherlock.sherlock.constant.Constant;
 import ngothanhson95.dev.com.sherlock.sherlock.database.PersonDbHelper;
 import ngothanhson95.dev.com.sherlock.sherlock.listener.PersonItemClickListener;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 
 public class MainActivity extends AppCompatActivity implements PersonItemClickListener, SearchView.OnQueryTextListener {
-
-    private RecyclerView rvPerson;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.rvListPerson) RecyclerView rvPerson;
     private PersonAdapter personAdapter;
     private ArrayList<Person> personArrayList;
     private PersonDbHelper personDbHelper;
@@ -34,13 +37,17 @@ public class MainActivity extends AppCompatActivity implements PersonItemClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher_sherlock);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        ButterKnife.bind(this);
+        initToolbar();
         init();
     }
 
+    private void initToolbar(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher_sherlock);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setTitle("Sherlock");
+    }
 
     private void init() {
         personArrayList = new ArrayList<>();
@@ -48,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements PersonItemClickLi
         personArrayList = new ArrayList<>(Arrays.asList(personDbHelper.getAllPerson()).size());
         personArrayList.addAll(personDbHelper.getAllPerson());
         personAdapter = new PersonAdapter(personArrayList);
-        rvPerson = (RecyclerView) findViewById(R.id.rvListPerson);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rvPerson.setLayoutManager(staggeredGridLayoutManager);
         rvPerson.setAdapter(personAdapter);
@@ -94,12 +100,26 @@ public class MainActivity extends AppCompatActivity implements PersonItemClickLi
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "Da chon", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, AboutPersonActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.ID_KEY, personArrayList.get(position).getId());
+        bundle.putString(Constant.NAME_KEY, personArrayList.get(position).getName());
+        intent.putExtra(Constant.BUNDLE_KEY, bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+        Toast.makeText(this, "Long click", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        personAdapter.filter(query);
+        if(!query.isEmpty()){
+            getSupportActionBar().setTitle("Result of " + query);
+        }
+        return true;
     }
 
     @Override

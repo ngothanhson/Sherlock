@@ -48,8 +48,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         this.personItemClickListener = listener;
     }
 
+    public void setOnItemLongClickListener(PersonItemClickListener listener){
+        this.personItemClickListener = listener;
+    }
+
     public void filter(String text){
-        if(text.isEmpty()){
+        if(text.trim().isEmpty()){
             personArrayList.clear();
             personArrayList.addAll(personArrayListCopy);
         } else {
@@ -62,7 +66,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
             }
             personArrayList.clear();
             personArrayList.addAll(result);
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 }

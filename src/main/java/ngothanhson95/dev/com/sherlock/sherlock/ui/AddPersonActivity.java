@@ -3,11 +3,13 @@ package ngothanhson95.dev.com.sherlock.sherlock.ui;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,20 +55,42 @@ public class AddPersonActivity extends AppCompatActivity {
     RadioGroup rdgGender;
     @Bind(R.id.imgPersonPhoto)
     ImageView imgPersonPhoto;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     public final String APP_TAG = "Sherlock";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     private static final int PICK_IMAGE_REQUEST = 1035;
     private Person person = new Person();
     private PersonDbHelper db;
+    private Bitmap imageBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
         ButterKnife.bind(this);
+        initToolbar();
         initView();
     }
+
+    private void initToolbar(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher_sherlock);
+        getSupportActionBar().setTitle("Add person");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow_left));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     private void initView() {
         btnsavePerson.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +101,7 @@ public class AddPersonActivity extends AppCompatActivity {
                     int selectedId = rdgGender.getCheckedRadioButtonId();
                     RadioButton rd = (RadioButton) findViewById(selectedId);
                     person.setGender(rd.getText().toString());
+                    person.setImage(bitmapToByte(((BitmapDrawable)imgPersonPhoto.getDrawable()).getBitmap()));
                     addPerson();
                     confirmAlert.setTitle("Confirm PersonInfomation");
                     confirmAlert.setMessage(
@@ -185,9 +210,8 @@ public class AddPersonActivity extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                imageBitmap = (Bitmap) extras.get("data");
                 imgPersonPhoto.setImageBitmap(imageBitmap);
-                person.setImage(bitmapToByte(imageBitmap));
             } else {
                 Toast.makeText(this, "Picture wasn' taken", Toast.LENGTH_SHORT).show();
             }
@@ -197,9 +221,8 @@ public class AddPersonActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Uri uri = data.getData();
                 try {
-                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     imgPersonPhoto.setImageBitmap(imageBitmap);
-                    person.setImage(bitmapToByte(imageBitmap));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

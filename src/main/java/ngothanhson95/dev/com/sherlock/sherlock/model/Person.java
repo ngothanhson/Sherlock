@@ -13,6 +13,7 @@ public class Person {
     private String additionalComment;
     private int id;
     private byte[] image;
+    private Movement movement;
 
     public Person() {
     }
@@ -89,6 +90,7 @@ public class Person {
         this.name = name;
     }
 
+    //not init movement
     public Person(String additionalComment, String address, String age, String gender, String hairColour, String height, byte[] image, String name) {
         this.additionalComment = additionalComment;
         this.address = address;

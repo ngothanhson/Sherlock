@@ -5,10 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import ngothanhson95.dev.com.sherlock.sherlock.constant.Constant;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 /**
  * Created by ngothanhson95 on 7/15/16.
@@ -17,18 +16,6 @@ public class PersonDbHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "PersonDb.db";
-
-    public static final String TABLE_NAME = "Person";
-    public static final String COLUMN_PERSON_ID = "ID";
-    public static final String COLUMN_PERSON_NAME = "Name";
-    public static final String COLUMN_AGE = "Age";
-    public static final String COLUMN_HEIGHT = "Height";
-    public static final String COMUMN_GENDER = "Gender";
-    public static final String COLUMN_HAIRCOLLOUR = "Hair_Colour";
-    public static final String COLUMN_ADDRESS = "Address";
-    public static final String COLUMN_ADDITIONAL_COMMENT = "Additional_Comment";
-    public static final String COLUMN_IMAGE = "Image";
-
 
     public PersonDbHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,15 +35,15 @@ public class PersonDbHelper extends SQLiteOpenHelper{
     public boolean insert(Person person){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_PERSON_NAME, person.getName());
-        contentValues.put(COLUMN_AGE, person.getAge());
-        contentValues.put(COLUMN_HEIGHT, person.getHeight());
-        contentValues.put(COMUMN_GENDER, person.getGender());
-        contentValues.put(COLUMN_HAIRCOLLOUR, person.getHairColour());
-        contentValues.put(COLUMN_ADDRESS, person.getAddress());
-        contentValues.put(COLUMN_ADDITIONAL_COMMENT, person.getAdditionalComment());
-        contentValues.put(COLUMN_IMAGE, person.getImage());
-        long result =  db.insert(TABLE_NAME, null, contentValues);
+        contentValues.put(Constant.COLUMN_PERSON_NAME, person.getName());
+        contentValues.put(Constant.COLUMN_AGE, person.getAge());
+        contentValues.put(Constant.COLUMN_HEIGHT, person.getHeight());
+        contentValues.put(Constant.COMUMN_GENDER, person.getGender());
+        contentValues.put(Constant.COLUMN_HAIRCOLLOUR, person.getHairColour());
+        contentValues.put(Constant.COLUMN_ADDRESS, person.getAddress());
+        contentValues.put(Constant.COLUMN_ADDITIONAL_COMMENT, person.getAdditionalComment());
+        contentValues.put(Constant.COLUMN_IMAGE, person.getImage());
+        long result =  db.insert(Constant.PERSON_TABLE, null, contentValues);
         return true;
     }
 
@@ -81,11 +68,4 @@ public class PersonDbHelper extends SQLiteOpenHelper{
         }
         return listPerson;
     }
-
-//    public List<Person> getPersonByName(String name){
-//        List<Person> list = new ArrayList<>();
-//        SQLiteDatabase db = getReadableDatabase();
-//        Cursor cursor = db.rawQuery(SQLHelper.SQL_SEARCH_BY_NAME , null);
-//
-//    }
 }

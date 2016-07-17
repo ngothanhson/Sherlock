@@ -17,7 +17,7 @@ import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 /**
  * Created by ngothanhson95 on 7/16/16.
  */
-public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener , View.OnLongClickListener{
 
     @Bind(R.id.imgMainPhoto)
     ImageView imgMainPhoto;
@@ -32,6 +32,7 @@ public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.O
         ButterKnife.bind(this, itemView);
         this.personItemClickListener = itemClickListener;
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void setUpWith(Person person){
@@ -48,5 +49,15 @@ public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.O
         if(personItemClickListener != null){
             personItemClickListener.onItemClick(view, getPosition());
         }
+    }
+
+
+    @Override
+    public boolean onLongClick(View view) {
+        if(personItemClickListener != null){
+            personItemClickListener.onLongClick(view, getPosition());
+            return  true;
+        }
+        return false;
     }
 }
