@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ngothanhson95.dev.com.sherlock.R;
-import ngothanhson95.dev.com.sherlock.sherlock.listener.PersonItemClickListener;
+import ngothanhson95.dev.com.sherlock.sherlock.listener.MyClickListener;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 
 /**
@@ -26,18 +26,19 @@ public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.O
     @Bind(R.id.tvPersonMovement)
     TextView tvPersonMovement;
 
-    private PersonItemClickListener personItemClickListener;
-    public PersonViewHolder(View itemView, PersonItemClickListener itemClickListener) {
+    private MyClickListener myClickListener;
+
+    public PersonViewHolder(View itemView, MyClickListener itemClickListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        this.personItemClickListener = itemClickListener;
+        this.myClickListener = itemClickListener;
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
     }
 
     public void setUpWith(Person person){
         tvPersonName.setText(person.getName());
-        tvPersonMovement.setText(person.getAge());
+        tvPersonMovement.setText("Movement: " + person.getMovementCount());
         ByteArrayInputStream input = new ByteArrayInputStream(person.getImage());
         if(input!=null) {
             imgMainPhoto.setImageBitmap(BitmapFactory.decodeStream(input));
@@ -46,16 +47,16 @@ public class PersonViewHolder  extends RecyclerView.ViewHolder implements View.O
 
     @Override
     public void onClick(View view) {
-        if(personItemClickListener != null){
-            personItemClickListener.onItemClick(view, getPosition());
+        if(myClickListener != null){
+            myClickListener.onItemClick(view, getPosition());
         }
     }
 
 
     @Override
     public boolean onLongClick(View view) {
-        if(personItemClickListener != null){
-            personItemClickListener.onLongClick(view, getPosition());
+        if(myClickListener != null){
+            myClickListener.onLongClick(view, getPosition());
             return  true;
         }
         return false;

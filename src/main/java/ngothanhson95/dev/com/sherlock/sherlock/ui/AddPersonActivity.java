@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +25,8 @@ import java.io.IOException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ngothanhson95.dev.com.sherlock.R;
-import ngothanhson95.dev.com.sherlock.sherlock.database.PersonDbHelper;
+import ngothanhson95.dev.com.sherlock.sherlock.constant.Constant;
+import ngothanhson95.dev.com.sherlock.sherlock.database.DbHelper;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 
 
@@ -62,7 +64,7 @@ public class AddPersonActivity extends AppCompatActivity {
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     private static final int PICK_IMAGE_REQUEST = 1035;
     private Person person = new Person();
-    private PersonDbHelper db;
+    private DbHelper db;
     private Bitmap imageBitmap;
 
     @Override
@@ -85,8 +87,7 @@ public class AddPersonActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
-                startActivity(intent);
+                AddPersonActivity.this.finish();
             }
         });
     }
@@ -95,7 +96,7 @@ public class AddPersonActivity extends AppCompatActivity {
     private void initView() {
         btnsavePerson.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 if (checkRequiredText() == true) {
                     AlertDialog.Builder confirmAlert = new AlertDialog.Builder(AddPersonActivity.this);
                     int selectedId = rdgGender.getCheckedRadioButtonId();
@@ -113,9 +114,18 @@ public class AddPersonActivity extends AppCompatActivity {
                     confirmAlert.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            db = new PersonDbHelper(getApplicationContext());
-                            db.insert(person);
-                            Toast.makeText(AddPersonActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+                            db = new DbHelper(getApplicationContext());
+                            db.insertPerson(person);
+                            Snackbar.make(view, "Successful", Snackbar.LENGTH_SHORT).show();
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable(Constant.PERSON_PARCE_KEY, person);
+                            Intent in = new Intent(AddPersonActivity.this, MainActivity.class);
+                            in.putExtra(Constant.BUNDLE_KEY , bundle);
+                            AddPersonActivity.this.setResult(Constant.ADD_PERSON_RESULT_CODE, in );
+                            AddPersonActivity.this.finish();
+//                          Toast.makeText(AddPersonActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
+//                            startActivity(intent);
                         }
                     });
 
@@ -132,7 +142,6 @@ public class AddPersonActivity extends AppCompatActivity {
 
         imgPersonPhoto.setOnClickListener(new View.OnClickListener() {
             final CharSequence[] items = {"Take Photo", "Choose from Library"};
-
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder selectPhoto = new AlertDialog.Builder(AddPersonActivity.this);
@@ -158,8 +167,9 @@ public class AddPersonActivity extends AppCompatActivity {
         btnReturnPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
+//                startActivity(intent);
+                AddPersonActivity.this.finish();
             }
         });
     }

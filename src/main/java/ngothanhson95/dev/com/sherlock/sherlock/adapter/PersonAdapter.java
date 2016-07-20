@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import ngothanhson95.dev.com.sherlock.R;
-import ngothanhson95.dev.com.sherlock.sherlock.listener.PersonItemClickListener;
+import ngothanhson95.dev.com.sherlock.sherlock.listener.MyClickListener;
 import ngothanhson95.dev.com.sherlock.sherlock.model.Person;
 import ngothanhson95.dev.com.sherlock.sherlock.viewholder.PersonViewHolder;
 
@@ -18,7 +18,7 @@ import ngothanhson95.dev.com.sherlock.sherlock.viewholder.PersonViewHolder;
 public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     public ArrayList<Person> personArrayList = new ArrayList<>();
     public ArrayList<Person> personArrayListCopy = new ArrayList<>();
-    private PersonItemClickListener personItemClickListener;
+    private MyClickListener myClickListener;
 
     public PersonAdapter(ArrayList<Person> personArrayList) {
         this.personArrayList = personArrayList;
@@ -28,7 +28,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_person, parent, false);
-        PersonViewHolder personViewHolder = new PersonViewHolder(v, personItemClickListener);
+        PersonViewHolder personViewHolder = new PersonViewHolder(v, myClickListener);
         return  personViewHolder;
     }
 
@@ -44,12 +44,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         return personArrayList.size();
     }
 
-    public void setOnItemClickListener(PersonItemClickListener listener){
-        this.personItemClickListener = listener;
+    public void setOnItemClickListener(MyClickListener listener){
+        this.myClickListener = listener;
     }
 
-    public void setOnItemLongClickListener(PersonItemClickListener listener){
-        this.personItemClickListener = listener;
+    public void setOnItemLongClickListener(MyClickListener listener){
+        this.myClickListener = listener;
     }
 
     public void filter(String text){

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvReferencePlace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="REFERENCE"/>
+    <TextView
+        android:id="@+id/tvNamePlace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvReferencePlace"
+        android:padding="10dip"
+        android:text="PLAce"
+        android:textSize="16dip"
+        android:textStyle="bold"/>
+</RelativeLayout>

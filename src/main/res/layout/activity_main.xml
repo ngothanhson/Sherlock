@@ -10,6 +10,14 @@
    <include layout="@layout/toolbar"
             android:id="@+id/toolbar"/>
 
+   <TextView
+       android:id="@+id/tvNoperson"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="No person in database"
+       android:layout_centerInParent="true"
+       android:textSize="@dimen/big_text"
+       android:textColor="@color/colorPrimaryText"/>
    <android.support.v7.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="fill_parent"

@@ -15,11 +15,11 @@
         android:padding="@dimen/small_padding">
 
         <ImageView
+            android:id="@+id/imgLocation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/cardview_shadow_start_color"/>
         <ImageView
-            android:id="@+id/imgLocation"
             android:layout_width="@dimen/small_icon"
             android:layout_height="@dimen/small_icon"
             android:src="@drawable/place"
