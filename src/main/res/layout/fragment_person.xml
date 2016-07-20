@@ -1,0 +1,199 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".sherlock.ui.AboutPersonActivity">
+
+      <RelativeLayout
+          android:id="@+id/layoutPhoto"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/photo_person">
+
+         <ImageView
+             android:id="@+id/imgPersonPhoto"
+             android:layout_width="@dimen/photo_person"
+             android:layout_height="@dimen/photo_person"
+             android:layout_gravity="center"
+             android:src="@drawable/person"/>
+
+         <EditText
+             android:id="@+id/etInputName"
+             android:layout_width="fill_parent"
+             android:layout_height="match_parent"
+             android:layout_toRightOf="@id/imgPersonPhoto"
+             android:hint="@string/action_input_name"
+             android:padding="@dimen/small_padding"
+             android:paddingLeft="@dimen/small_padding"/>
+
+         <ImageView
+             android:id="@+id/imgWarningName"
+             android:layout_width="@dimen/small_icon"
+             android:layout_height="@dimen/small_icon"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:src="@drawable/warning"
+             android:visibility="invisible"/>
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:id="@+id/layoutInputAge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/layoutPhoto"
+          android:paddingTop="@dimen/small_padding">
+
+         <TextView
+             android:id="@+id/tvAge"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Age (Required):"
+             android:textColor="@color/colorPrimaryText"
+             android:textSize="@dimen/normal_text"/>
+
+         <EditText
+             android:id="@+id/etInputAge"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/tvAge"
+             android:layout_centerHorizontal="true"
+             android:hint="Input Age"
+             android:textSize="@dimen/normal_text"/>
+
+         <ImageView
+             android:id="@+id/imgWarningAge"
+             android:layout_width="@dimen/small_icon"
+             android:layout_height="@dimen/small_icon"
+             android:layout_alignBottom="@id/etInputAge"
+             android:layout_below="@id/tvAge"
+             android:layout_toRightOf="@+id/etInputAge"
+             android:src="@drawable/warning"
+             android:visibility="invisible"/>>
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:id="@+id/layoutInputHeight"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/layoutPhoto"
+          android:layout_toRightOf="@id/layoutInputAge"
+          android:paddingTop="@dimen/small_padding">
+
+         <TextView
+             android:id="@+id/tvHeight"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Height (Required):"
+             android:textColor="@color/colorPrimaryText"
+             android:textSize="@dimen/normal_text"/>
+
+         <EditText
+             android:id="@+id/etInputHeight"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/tvHeight"
+             android:hint="Input Height (cm)"
+             android:maxLines="1"
+             android:textSize="@dimen/normal_text"/>
+
+         <ImageView
+             android:id="@+id/imgWarningHeight"
+             android:layout_width="@dimen/small_icon"
+             android:layout_height="@dimen/small_icon"
+             android:layout_alignBottom="@id/etInputHeight"
+             android:layout_below="@id/tvHeight"
+             android:layout_toRightOf="@+id/etInputHeight"
+             android:src="@drawable/warning"
+             android:visibility="invisible"/>
+      </RelativeLayout>
+
+      <TextView
+          android:id="@+id/tvGender"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/layoutInputAge"
+          android:text="Gender (Required):"
+          android:textColor="@color/colorPrimaryText"/>
+
+      <RadioGroup
+          android:id="@+id/rdgGender"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tvGender"
+          android:orientation="horizontal">
+
+         <RadioButton
+             android:id="@+id/rdMale"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:checked="true"
+             android:text="Male"/>
+
+         <RadioButton
+             android:id="@+id/rdFemale"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Female"/>
+      </RadioGroup>
+
+      <TextView
+          android:id="@+id/tvHairColour"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/rdgGender"
+          android:paddingTop="@dimen/small_padding"
+          android:text="Hair colour (Optional):"
+          android:textColor="@color/colorPrimaryText"/>
+
+      <EditText
+          android:id="@+id/etInputHairColour"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/tvHairColour"
+          android:hint="Input Hair Colour"
+          android:maxLines="1"
+          android:textSize="@dimen/normal_text"/>
+
+      <TextView
+          android:id="@+id/tvAdress"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/etInputHairColour"
+          android:paddingTop="@dimen/small_padding"
+          android:text="Adress (Optional):"
+          android:textColor="@color/colorPrimaryText"/>
+
+      <EditText
+          android:id="@+id/etInputAdress"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/tvAdress"
+          android:hint="Input Adress"
+          android:maxLines="1"
+          android:textSize="@dimen/normal_text"/>
+
+      <TextView
+          android:id="@+id/tvAdditionalComment"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/etInputAdress"
+          android:paddingTop="@dimen/small_padding"
+          android:text="Additional Comment (Optional):"
+          android:textColor="@color/colorPrimaryText"/>
+
+      <EditText
+          android:id="@+id/etAdditionalComment"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/tvAdditionalComment"
+          android:hint="Input Additional Comment"
+          android:maxLines="1"
+          android:textSize="@dimen/normal_text"/>
+
+         <Button
+             android:id="@+id/btnUpdatePerson"
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:paddingRight="10dp"
+             android:text="Save"
+             android:layout_below="@id/etAdditionalComment"/>
+</RelativeLayout>

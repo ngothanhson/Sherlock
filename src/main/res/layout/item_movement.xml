@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvMovementNote"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding"
+            android:text="Lunch Time"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/big_text"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvMovementLocation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMovementNote"
+            android:paddingLeft="@dimen/small_padding"
+            android:text="Nhat Ban"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/normal_text"/>
+
+        <ImageView
+            android:layout_width="@dimen/small_icon"
+            android:layout_height="@dimen/small_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/naviget_next"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMovementTime"
+            android:text="Now"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorPrimary"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

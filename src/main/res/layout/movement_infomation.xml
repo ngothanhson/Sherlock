@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <TextView
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Person Name:"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvMoveInfoPersonName"
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text:"
+        android:textSize="@dimen/normal_text"/>
+
+    <TextView
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movement Time:"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvMoveInfoTime"
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text:"
+        android:textSize="@dimen/normal_text"/>
+
+    <TextView
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movement Note:"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvMoveInfoNote"
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text:"
+        android:textSize="@dimen/normal_text"/>
+
+    <TextView
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movement Location:"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvMoveInfoLocation"
+        android:padding="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text:"
+        android:textSize="@dimen/normal_text"/>
+</LinearLayout>
